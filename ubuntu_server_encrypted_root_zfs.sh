@@ -79,7 +79,7 @@ remoteaccess_ip="192.168.0.222" #Remote access static IP address to connect to Z
 remoteaccess_netmask="255.255.255.0" #Remote access subnet mask. Not used for "dhcp" automatic IP configuration.
 ubuntu_original="http://archive.ubuntu.com/ubuntu" #Default ubuntu repository.
 install_warning_level="PRIORITY=critical" #"PRIORITY=critical", or "FRONTEND=noninteractive". Pause install to show critical messages only or do not pause (noninteractive). Script still pauses for keyboard selection.
-extra_programs="yes" #"yes", or "no". Install additional programs if not included in the ubuntu distro package. Programs: cifs-utils, locate, man-db, openssh-server, tldr.
+extra_programs="no" #"yes", or "no". Install additional programs if not included in the ubuntu distro package. Programs: cifs-utils, locate, man-db, openssh-server, tldr.
 
 ##Check for root priviliges
 if [ "$(id -u)" -ne 0 ]; then
