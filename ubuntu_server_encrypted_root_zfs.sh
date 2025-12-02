@@ -958,31 +958,31 @@ debootstrap_createzfspools_Func(){
 		##https://openzfs.github.io/openzfs-docs/Getting%20Started/Debian/Debian%20Buster%20Root%20on%20ZFS.html#step-3-system-installation
 		##"-o canmount=off" is for a system directory that should rollback with the rest of the system.
 		
-		zfs create	"$RPOOL"/srv 						##server webserver content
-		zfs create -o canmount=off	"$RPOOL"/usr
-		zfs create	"$RPOOL"/usr/local					##locally compiled software
-		zfs create -o canmount=off "$RPOOL"/var 
-		zfs create -o canmount=off "$RPOOL"/var/lib
-		zfs create	"$RPOOL"/var/games					##game files
-		zfs create	"$RPOOL"/var/log 					##log files
-		zfs create	"$RPOOL"/var/mail 					##local mails
-		zfs create	"$RPOOL"/var/snap					##snaps handle revisions themselves
-		zfs create	"$RPOOL"/var/spool					##printing tasks
-		zfs create	"$RPOOL"/var/www					##server webserver content
+#		zfs create	"$RPOOL"/srv 						##server webserver content
+#		zfs create -o canmount=off	"$RPOOL"/usr
+#		zfs create	"$RPOOL"/usr/local					##locally compiled software
+#		zfs create -o canmount=off "$RPOOL"/var 
+#		zfs create -o canmount=off "$RPOOL"/var/lib
+#		zfs create	"$RPOOL"/var/games					##game files
+#		zfs create	"$RPOOL"/var/log 					##log files
+#		zfs create	"$RPOOL"/var/mail 					##local mails
+#		zfs create	"$RPOOL"/var/snap					##snaps handle revisions themselves
+#		zfs create	"$RPOOL"/var/spool					##printing tasks
+#		zfs create	"$RPOOL"/var/www					##server webserver content
 		
 		
 		##USERDATA datasets
-		zfs create "$RPOOL"/home
-		zfs create -o mountpoint=/root "$RPOOL"/home/root
-		chmod 700 "$mountpoint"/root
+#		zfs create "$RPOOL"/home
+#		zfs create -o mountpoint=/root "$RPOOL"/home/root
+#		chmod 700 "$mountpoint"/root
 
 		
 		##optional
 		##exclude from snapshots
-		zfs create -o com.sun:auto-snapshot=false "$RPOOL"/var/cache
-		zfs create -o com.sun:auto-snapshot=false "$RPOOL"/var/tmp
-		chmod 1777 "$mountpoint"/var/tmp
-		zfs create -o com.sun:auto-snapshot=false "$RPOOL"/var/lib/docker ##Docker manages its own datasets & snapshots
+#		zfs create -o com.sun:auto-snapshot=false "$RPOOL"/var/cache
+#		zfs create -o com.sun:auto-snapshot=false "$RPOOL"/var/tmp
+#		chmod 1777 "$mountpoint"/var/tmp
+#		zfs create -o com.sun:auto-snapshot=false "$RPOOL"/var/lib/docker ##Docker manages its own datasets & snapshots
 
 	
 		##Mount a tempfs at /run
