@@ -22,6 +22,8 @@ export POOL_DISK="/dev/nvme0n1"
 export POOL_PART="2"
 export POOL_DEVICE="${POOL_DISK}p${POOL_PART}"
 
+zpool import -f rpool
+
 zfs create -o mountpoint=/ -o canmount=noauto rpool/ROOT/${ID}
 
 zpool set bootfs=rpool/ROOT/${ID} rpool
@@ -34,7 +36,7 @@ zfs mount rpool/home
 udevadm trigger
 
 mkdir -pv /run/install
-mount /dev/loop0 /run/install
+mount /dev/loop0 /run/install -o ro
 
 rsync -pogAXtlHrDx \
  --stats \
