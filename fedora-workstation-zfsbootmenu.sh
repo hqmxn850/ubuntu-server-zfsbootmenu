@@ -33,8 +33,8 @@ zfs mount rpool/home
 
 udevadm trigger
 
-mkdir /run/install
-mount /dev/mapper/live-base /run/install
+mkdir -pv /run/install
+mount /dev/loop0 /run/install
 
 rsync -pogAXtlHrDx \
  --stats \
@@ -51,7 +51,7 @@ mount -t proc proc /mnt/proc
 mount -t sysfs sys /mnt/sys
 mount -B /dev /mnt/dev
 mount -t devpts pts /mnt/dev/pts
-chroot /mnt /bin/bash
+cat <<-CHROOT | chroot /mnt /bin/bash -
 
 cat << EOF > /etc/dracut.conf.d/zol.conf
 nofsck="yes"
@@ -92,7 +92,8 @@ efibootmgr -c -d "$BOOT_DISK" -p "$BOOT_PART" \
 
 mv /etc/resolv.conf.orig /etc/resolv.conf
 
-exit
+CHROOT
+#exit
 
 umount -n -R /mnt
 
