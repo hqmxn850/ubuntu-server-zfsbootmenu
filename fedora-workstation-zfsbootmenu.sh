@@ -6,7 +6,7 @@ rpm -e --nodeps zfs-fuse
 dnf config-manager --disable updates
 
 dnf --releasever=${VERSION_ID} install -y \
-  https://zfsonlinux.org/fedora/zfs-release-2-5$(rpm --eval "%{dist}").noarch.rpm
+  https://zfsonlinux.org/fedora/zfs-release-3-0$(rpm --eval "%{dist}").noarch.rpm
 
 dnf install -y https://dl.fedoraproject.org/pub/fedora/linux/releases/${VERSION_ID}/Everything/x86_64/os/Packages/k/kernel-devel-$(uname -r).rpm
 
@@ -66,7 +66,7 @@ rpm -e --nodeps zfs-fuse
 dnf config-manager --disable updates
 
 dnf --releasever=${VERSION_ID} install -y \
-  https://zfsonlinux.org/fedora/zfs-release-2-5$(rpm --eval "%{dist}").noarch.rpm
+  https://zfsonlinux.org/fedora/zfs-release-3-0$(rpm --eval "%{dist}").noarch.rpm
 
 dnf install -y https://dl.fedoraproject.org/pub/fedora/linux/releases/${VERSION_ID}/Everything/x86_64/os/Packages/k/kernel-devel-$(uname -r).rpm
 
@@ -97,4 +97,4 @@ exit
 umount -n -R /mnt
 
 zpool export rpool
-reboot
+#reboot
