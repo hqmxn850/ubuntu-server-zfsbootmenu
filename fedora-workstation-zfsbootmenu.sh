@@ -45,8 +45,6 @@ rsync -pogAXtlHrDx \
  --info=progress2 \
  /run/install/ /mnt
 
-mkdir -pv /boot/efi/
-
 mv /mnt/etc/resolv.conf /mnt/etc/resolv.conf.orig
 cp -L /etc/resolv.conf /mnt/etc
 cp /etc/hostid /mnt/etc
@@ -57,6 +55,8 @@ mount -B /dev /mnt/dev
 mount -t devpts pts /mnt/dev/pts
 cat <<-CHROOT | chroot /mnt /bin/bash -
 
+mkdir -pv /boot/efi/
+
 cat << EOF > /etc/dracut.conf.d/zol.conf
 nofsck="yes"
 add_dracutmodules+=" zfs "
@@ -64,8 +64,6 @@ omit_dracutmodules+=" btrfs "
 EOF
 
 source /etc/os-release
-
-rpm -e --nodeps zfs-fuse
 
 dnf5 config-manager --set-disabled updates
 
