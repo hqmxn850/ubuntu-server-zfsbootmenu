@@ -45,6 +45,8 @@ rsync -pogAXtlHrDx \
  --info=progress2 \
  /run/install/ /mnt
 
+mkdir -pv /boot/efi/
+
 mv /mnt/etc/resolv.conf /mnt/etc/resolv.conf.orig
 cp -L /etc/resolv.conf /mnt/etc
 cp /etc/hostid /mnt/etc
