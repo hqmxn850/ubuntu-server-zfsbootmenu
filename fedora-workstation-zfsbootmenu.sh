@@ -55,7 +55,7 @@ mount -B /dev /mnt/dev
 mount -t devpts pts /mnt/dev/pts
 cat <<-CHROOT | chroot /mnt /bin/bash -
 
-mkdir -pv /boot/efi/
+mkdir -pv /boot/efi/EFI
 
 cat << EOF > /etc/dracut.conf.d/zol.conf
 nofsck="yes"
@@ -82,14 +82,14 @@ dracut --force --regenerate-all
 
 zfs set org.zfsbootmenu:commandline="quiet rhgb" rpool/ROOT
 
-cat << EOF >> /etc/fstab
-$( blkid | grep "$BOOT_DEVICE" | cut -d ' ' -f 2 ) /boot/efi vfat defaults 0 0
-EOF
+#cat << EOF >> /etc/fstab
+#$( blkid | grep "$BOOT_DEVICE" | cut -d ' ' -f 2 ) /boot/efi vfat defaults 0 0
+#EOF
 
-mount /boot/efi
+#mount /boot/efi
 
-efibootmgr -c -d "$BOOT_DISK" -p "$BOOT_PART" \
-  -L "ZFSBootMenu" \
+#efibootmgr -c -d "$BOOT_DISK" -p "$BOOT_PART" \
+#  -L "ZFSBootMenu" \
 #  -l '\EFI\ZBM\VMLINUZ.EFI'
 
 mv /etc/resolv.conf.orig /etc/resolv.conf
