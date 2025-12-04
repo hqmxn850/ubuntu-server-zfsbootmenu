@@ -3,7 +3,7 @@ export ID
 
 rpm -e --nodeps zfs-fuse
 
-dnf5 config-manager --set-disabled updates
+dnf5 config-manager setopt updates.enabled=0
 
 dnf --releasever=${VERSION_ID} install -y \
   https://zfsonlinux.org/fedora/zfs-release-3-0$(rpm --eval "%{dist}").noarch.rpm
@@ -65,7 +65,7 @@ EOF
 
 source /etc/os-release
 
-dnf5 config-manager --set-disabled updates
+dnf5 config-manager setopt updates.enabled=0
 
 dnf --releasever=${VERSION_ID} install -y \
   https://zfsonlinux.org/fedora/zfs-release-3-0$(rpm --eval "%{dist}").noarch.rpm
@@ -76,7 +76,7 @@ dnf install -y zfs
 
 dnf install -y zfs-dracut
 
-dnf5 config-manager --set-enable updates
+dnf5 config-manager setopt updates.enabled=1
 
 dracut --force --regenerate-all
 
